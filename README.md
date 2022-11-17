@@ -27,7 +27,7 @@ O projeto trata-se de um microapp de agendamento a onde o paciente vai seleciona
 ### Stack
 você pode usar quaisquer dessas tecnologias para realizar os projetos:
 
-NodeJs・![Golang](https://img.shields.io/badge/go-%2300ADD8.svg?style=for-the-badge&logo=go&logoColor=white)・Python・![Dart](https://img.shields.io/badge/dart-%230175C2.svg?style=for-the-badge&logo=dart&logoColor=white)・![Flutter](https://img.shields.io/badge/Flutter-%2302569B.svg?style=for-the-badge&logo=Flutter&logoColor=white)・![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)・VanillaJs・CSS・SASS・LESS・HTML5・MongoDB・SQLite・MemCache・Redis・Material UI・Bootstrap・Foundation
+NodeJs・![Golang](https://img.shields.io/badge/go-%2300ADD8.svg?style=for-the-badge&logo=go&logoColor=white)・Python・![Dart](https://img.shields.io/badge/dart-%230175C2.svg?style=for-the-badge&logo=dart&logoColor=white) ![Flutter](https://img.shields.io/badge/Flutter-%2302569B.svg?style=for-the-badge&logo=Flutter&logoColor=white) ![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)・VanillaJs・CSS・SASS・LESS・HTML5・MongoDB・SQLite・MemCache・Redis・Material UI・Bootstrap・Foundation
 
 ## Persona
 
