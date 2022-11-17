@@ -43,7 +43,7 @@ você pode usar quaisquer dessas tecnologias para realizar os projetos:
 ## Persona
 
 - Consultorio
-  - Nome: Clínica QHealth
+  - Nome: QHealth
   - Atendimento: Seg-Sab dás 08h00min ás 19h00min
   
 - Paciente
@@ -59,9 +59,30 @@ você pode usar quaisquer dessas tecnologias para realizar os projetos:
 
 
 ## História do usuário
+```cucumber
+#language: pt-BR
 
-####  Funcionalidade: Agendamento de consulta
-#### Funcionalidade: Cancelamento de consulta
-#### Funcionalidade: Reagendamento de consulta
-#### Funcionalidade: Listagem de consultas agendadas
+Funcionalidade: Agendamento de consulta
+ "Eu, como paciente do consultório QHealth, quero agendar uma consulta com o profissional da minha escolha, 
+ para evitar que eu ligue ou vá ao consultorio para esse agendamento. 
+ Assim, fazendo com que evite filas ou fique muito tempo no telefone."
+ 
+ 
+Funcionalidade: Cancelamento de consulta
+  "Eu, como paciente do consultório QHealth, quero cancelar uma consulta com o profissional da minha escolha, 
+ para evitar que eu ligue ou vá ao consultorio para esse agendamento. 
+ Assim, fazendo com que evite filas ou fique muito tempo no telefone."
+
+Funcionalidade: Reagendamento de consulta
+  "Eu, como paciente do consultório QHealth, quero reagendar uma consulta com o profissional da minha escolha, 
+ para evitar que eu ligue ou vá ao consultorio para esse agendamento. 
+ Assim, fazendo com que evite filas ou fique muito tempo no telefone."
+ 
+Funcionalidade: Listagem de consultas agendadas
+  "Eu, como paciente do consultório QHealth, quero ver todas as consultas que eu tenha agendada, 
+ para evitar que eu ligue ou vá ao consultorio para verificar a minha agenda. 
+ Assim, fazendo com que evite filas ou fique muito tempo no telefone."
+
+```
+
 
