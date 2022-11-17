@@ -26,19 +26,8 @@ O projeto trata-se de um microapp de agendamento a onde o paciente vai seleciona
 
 ### Stack
 você pode usar quaisquer dessas tecnologias para realizar os projetos:
-- NodeJs
-- Golang
-- Python
-- React
-- VanillaJs
-- CSS
-- SASS
-- LESS
-- HTML5
-- MongoDB
-- SQLite
-- MenCache
-- Redis
+
+NodeJs・Golang・Python・Flutter・React・VanillaJs・CSS・SASS・LESS・HTML5・MongoDB・SQLite・MemCache・Redis・Material UI・Bootstrap・Foundation
 
 ## Persona
 
@@ -67,22 +56,33 @@ Funcionalidade: Agendamento de consulta
  para evitar que eu ligue ou vá ao consultorio para esse agendamento. 
  Assim, fazendo com que evite filas ou fique muito tempo no telefone."
  
+ Cenario: Agendamento realizado com sucesso
+ Cenario: Falha ao agendar um horário não disponivel
  
 Funcionalidade: Cancelamento de consulta
   "Eu, como paciente do consultório QHealth, quero cancelar uma consulta com o profissional da minha escolha, 
  para evitar que eu ligue ou vá ao consultorio para esse agendamento. 
  Assim, fazendo com que evite filas ou fique muito tempo no telefone."
+ 
+ Cenario: Cancelamento realizado com sucesso
+ Cenario: Falha ao cancelar devido ao prazo permitido expirado
 
 Funcionalidade: Reagendamento de consulta
   "Eu, como paciente do consultório QHealth, quero reagendar uma consulta com o profissional da minha escolha, 
  para evitar que eu ligue ou vá ao consultorio para esse agendamento. 
  Assim, fazendo com que evite filas ou fique muito tempo no telefone."
  
+ Cenario: Reagendamento realizado com sucesso
+ Cenario: Falha ao reagendar um horário não disponivel
+ Cenario: Falha ao reagendar devido ao prazo permitido expirado
+ 
 Funcionalidade: Listagem de consultas agendadas
   "Eu, como paciente do consultório QHealth, quero ver todas as consultas que eu tenha agendada, 
  para evitar que eu ligue ou vá ao consultorio para verificar a minha agenda. 
  Assim, fazendo com que evite filas ou fique muito tempo no telefone."
-
+ 
+ Cenario: Listagem realizada com sucesso
+ Cenario: Sem agendas para serem listadas
 ```
 
 
