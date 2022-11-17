@@ -26,8 +26,19 @@ O projeto trata-se de um microapp de agendamento a onde o paciente vai seleciona
 
 ### Stack
 você pode usar quaisquer dessas tecnologias para realizar os projetos:
-
-node 
+- NodeJs
+- Golang
+- Python
+- React
+- VanillaJs
+- CSS
+- SASS
+- LESS
+- HTML5
+- MongoDB
+- SQLite
+- MenCache
+- Redis
 
 ## Persona
 
