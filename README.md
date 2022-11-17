@@ -27,7 +27,10 @@ O projeto trata-se de um microapp de agendamento a onde o paciente vai seleciona
 ### Stack
 você pode usar quaisquer dessas tecnologias para realizar os projetos:
 
-NodeJs・![Golang](https://img.shields.io/badge/go-%2300ADD8.svg?style=for-the-badge&logo=go&logoColor=white)![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)![Dart](https://img.shields.io/badge/dart-%230175C2.svg?style=for-the-badge&logo=dart&logoColor=white) ![Flutter](https://img.shields.io/badge/Flutter-%2302569B.svg?style=for-the-badge&logo=Flutter&logoColor=white) ![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)・VanillaJs・CSS・SASS・LESS・HTML5・MongoDB・SQLite・MemCache・Redis・Material UI・Bootstrap・Foundation
+![NodeJS](https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white) ![Golang](https://img.shields.io/badge/go-%2300ADD8.svg?style=for-the-badge&logo=go&logoColor=white) ![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54) ![Dart](https://img.shields.io/badge/dart-%230175C2.svg?style=for-the-badge&logo=dart&logoColor=white) ![Flutter](https://img.shields.io/badge/Flutter-%2302569B.svg?style=for-the-badge&logo=Flutter&logoColor=white) ![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)・![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white) 
+![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
+![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white)・SASS・LESS・MongoDB・SQLite・MemCache・![Redis](https://img.shields.io/badge/redis-%23DD0031.svg?style=for-the-badge&logo=redis&logoColor=white) 
+![MUI](https://img.shields.io/badge/MUI-%230081CB.svg?style=for-the-badge&logo=mui&logoColor=white)・Bootstrap・Foundation
 
 ## Persona
 
@@ -57,6 +60,14 @@ Funcionalidade: Agendamento de consulta
  Assim, fazendo com que evite filas ou fique muito tempo no telefone."
  
  Cenario: Agendamento realizado com sucesso
+  DADO que eu seja um paciente
+  E que eu escolha a especialidade do profissional
+  E escolha o profissional
+  E que eu tenha acesso a agenda do profissional
+  E que eu escolha uma data e horario para a consulta
+  QUANDO agendado a consulta
+  ENTÃO
+
  Cenario: Falha ao agendar um horário não disponivel
  
 Funcionalidade: Cancelamento de consulta
