@@ -75,7 +75,6 @@ Profissional:
     - Qua. das 11h00min ás 13h00min
     - Sex. das 10h00min ás 19h00min
     - Sab. das 08h00min ás 10h00min
-  
 ---
 ```
 
