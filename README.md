@@ -34,66 +34,163 @@ você pode usar quaisquer dessas tecnologias para realizar os projetos:
 
 ## Persona
 
-- Consultorio
-  - Nome: QHealth
-  - Atendimento: Seg-Sab dás 08h00min ás 19h00min
-  
-- Paciente
-  - Nome: Elon Musk
-  - WhatsApp: +447975777666
-  - Email: elon.musk@spacex.com
-  
-- Profissional
-  - Nome: Dr. Albert Einstein
-  - Especialidade: Endocrinologista
-  - Tempo de atendimento: 1h
-  - Atendimento: Seg-Sex dás 09h00min ás 18h00min
+```yml
 
+Consultorio:
+  Nome: QHealth
+  Atendimento: Seg-Sab dás 08h00min ás 19h00min
+  Especialidades: 
+    - Endocrinologista
+    - Clínico Geral
+    - Nutricionista
+---
+Paciente:
+  Nome: Elon Musk
+  WhatsApp: +447975777666
+  Email: elon.musk@spacex.com
+---  
+Profissional:
+  Nome: Dr. Albert Einstein
+  Especialidade: Endocrinologista
+  Tempo de atendimento: 1h
+  Limite para cancelamento: 1h antes da consulta
+  Atendimento: 
+    - Seg. das 09h00min ás 18h00min
+    - Qua. das 11h00min ás 13h00min
+    - Sex. das 10h00min ás 19h00min
+    - Sab. das 08h00min ás 10h00min
+  
+---
+```
 
 ## História do usuário
-```cucumber
-#language: pt-BR
+```gherkin
+# language: pt-BR
 
 Funcionalidade: Agendamento de consulta
- "Eu, como paciente do consultório QHealth, quero agendar uma consulta com o profissional da minha escolha, 
- para evitar que eu ligue ou vá ao consultorio para esse agendamento. 
- Assim, fazendo com que evite filas ou fique muito tempo no telefone."
- 
- Cenario: Agendamento realizado com sucesso
-  DADO que eu seja um paciente
-  E que eu escolha a especialidade do profissional
-  E escolha o profissional
-  E que eu tenha acesso a agenda do profissional
-  E que eu escolha uma data e horario para a consulta
-  QUANDO agendado a consulta
-  ENTÃO
+  Eu, como paciente do consultório QHealth, quero agendar uma consulta com o profissional da minha escolha, 
+  para evitar que eu ligue ou vá ao consultorio para esse agendamento. 
+  Assim, fazendo com que evite filas ou fique muito tempo no telefone.
 
- Cenario: Falha ao agendar um horário não disponivel
- 
+  Cenário: Agendamento realizado com sucesso
+    DADO que eu seja um paciente
+    E que eu escolha a especialidade do profissional
+    E escolha o profissional
+    E que eu tenha acesso a agenda do profissional
+    E que eu escolha uma data e horario para a consulta
+    E que essa data e horário esteja disponível
+    E que esteja dentro do horário de atendimento do profissional
+    QUANDO agendado a consulta
+    ENTÃO inclua o meu agendamento na agenda do profissional
+    E inclua o meu nome ao agendamento
+    E include meu número de Whatapp ao agendamento
+    E inclua o meu email ao agendamento
+
+
+  Cenário: Falha ao agendar um horário não disponivel
+    DADO que eu seja um paciente
+    E que eu escolha a especialidade do profissional
+    E escolha o profissional
+    E que eu tenha acesso a agenda do profissional
+    E que eu escolha uma data e horario para a consulta
+    E que esteja dentro do horário de atendimento do profissional
+    E que esta data esteja indisponível
+    QUANDO agendado a consulta
+    ENTÃO não inclua o meu agendamento na agenda do profissional
+    E informe-me que essa data está indisponível
+
+  Cenário: Falha ao agendar um horário não disponivel
+    DADO que eu seja um paciente
+    E que eu escolha a especialidade do profissional
+    E escolha o profissional
+    E que eu tenha acesso a agenda do profissional
+    E que eu escolha uma data e horario para a consulta
+    E que esteja fora do horário de atendimento do profissional
+    QUANDO agendado a consulta
+    ENTÃO não inclua o meu agendamento na agenda do profissional
+    E informe que o profissional não atende nesse horário
+
 Funcionalidade: Cancelamento de consulta
-  "Eu, como paciente do consultório QHealth, quero cancelar uma consulta com o profissional da minha escolha, 
- para evitar que eu ligue ou vá ao consultorio para esse agendamento. 
- Assim, fazendo com que evite filas ou fique muito tempo no telefone."
- 
- Cenario: Cancelamento realizado com sucesso
- Cenario: Falha ao cancelar devido ao prazo permitido expirado
+  Eu, como paciente do consultório QHealth, quero cancelar uma consulta com o profissional da minha escolha, 
+  para evitar que eu ligue ou vá ao consultorio para esse agendamento. 
+  Assim, fazendo com que evite filas ou fique muito tempo no telefone.
+
+  Cenário: Cancelamento realizado com sucesso
+    DADO que eu seja um paciente
+    E que eu tenha uma consulta agendada
+    E que esteja no periodo de cancelamento aceito pelo médico
+    QUANDO solicitado o cancelamento
+    ENTÃO então remova a consulta da agenda do médico
+    E remova os meus dados
+    E informe-me que o cancelamento foi realizado
+
+
+Cenario: Falha ao cancelar devido ao prazo permitido expirado
+    Cenário: Cancelamento realizado com sucesso
+    DADO que eu seja um paciente
+    E que eu tenha uma consulta agendada
+    E que esteja forma no periodo de cancelamento aceito pelo médico
+    QUANDO solicitado o cancelamento
+    ENTÃO não remova o agendamento
+    E inclua uma observação de solicitação de cancelamento recusado
+    E informe-me que não foi possivel cancelar a consulta devido ao limite permitido
+    E informe o limite
 
 Funcionalidade: Reagendamento de consulta
-  "Eu, como paciente do consultório QHealth, quero reagendar uma consulta com o profissional da minha escolha, 
- para evitar que eu ligue ou vá ao consultorio para esse agendamento. 
- Assim, fazendo com que evite filas ou fique muito tempo no telefone."
- 
- Cenario: Reagendamento realizado com sucesso
- Cenario: Falha ao reagendar um horário não disponivel
- Cenario: Falha ao reagendar devido ao prazo permitido expirado
- 
+  Eu, como paciente do consultório QHealth, quero reagendar uma consulta com o profissional da minha escolha, 
+  para evitar que eu ligue ou vá ao consultorio para esse agendamento. 
+  Assim, fazendo com que evite filas ou fique muito tempo no telefone.
+
+  Cenario: Reagendamento realizado com sucesso
+    DADO que eu seja um paciente
+    E que eu tenha uma consulta agendada
+    E que esteja no periodo permitido de reagendamento aceito pelo médico
+    E que o horário que eu escolha esteja disponível
+    QUANDO solicitado o reagendamento
+    ENTÃO então remova a consulta anterior da agenda do médico
+    E remova os meus dados da consulta anterior
+    E inclua o meu agendamento na agenda do profissional
+    E inclua o meu nome ao agendamento
+    E includa meu número de Whatapp ao agendamento
+    E inclua o meu email ao agendamento
+    E inclua uma observação de consulta reagendada
+    E informe-me que o reagendamento foi realizado
+    
+
+
+  Cenario: Falha ao reagendar um horário não disponivel
+    DADO que eu seja um paciente
+    E que eu tenha uma consulta agendada
+    E que esteja no periodo permitido de reagendamento aceito pelo médico
+    E que o horário que eu escolhi não esteja disponivel
+    QUANDO solicitado o reagendamento
+    ENTÃO informe que o horário não está disponível e informe para selecionar outra data
+    E não realize o agendamento
+
+  Cenario: Falha ao reagendar devido ao prazo permitido expirado
+    DADO que eu seja um paciente
+    E que eu tenha uma consulta agendada
+    E que esteja não periodo permitido de reagendamento aceito pelo médico
+    E que o horário que eu escolha esteja disponível
+    QUANDO solicitado o reagendamento
+    ENTÃO informe que não há mais como reagendar devido ao limite para reagendamento
+    E não realize o reagendamento
+    
+    
 Funcionalidade: Listagem de consultas agendadas
-  "Eu, como paciente do consultório QHealth, quero ver todas as consultas que eu tenha agendada, 
- para evitar que eu ligue ou vá ao consultorio para verificar a minha agenda. 
- Assim, fazendo com que evite filas ou fique muito tempo no telefone."
- 
- Cenario: Listagem realizada com sucesso
- Cenario: Sem agendas para serem listadas
+  Eu, como profissional do consultório QHealth, quero ver todas as consultas que eu tenha agendada, para que eu me organize antes de cada consulta.
+
+  Cenario: Listagem realizada com sucesso
+    DADO que eu seja profissional de saúde
+    E que eu tenha consultas em minha agenda
+    QUANDO solicitar para ver a minha agenda
+    ENTÃO mostrar a agenda da semana com todas as consultas agendadas
+
+  Cenario: Sem agendas para serem listadas
+    DADO que eu seja profissional de saúde
+    E que eu não tenha consultas em minha agenda
+    QUANDO solicitar para ver a minha agenda
+    ENTÃO infome que eu não possuo agendamentos
 ```
 
 
