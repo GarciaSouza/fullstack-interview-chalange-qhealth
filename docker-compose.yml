@@ -1,0 +1,4 @@
+version: "3.9"
+
+services:
+  # Inclua aqui a stack para subirmos e testarmos

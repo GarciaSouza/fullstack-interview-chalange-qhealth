@@ -7,7 +7,7 @@ Ele deve ser entregue em até 7 dias corridos, contato a partir da entrevista.
 ## Como realizar o projeto?
 Deve ser feito uma fork desse projeto e deve ser criando uma branch com o nome do seu id no github. Após o desenvolvimento, deve se disponibilizar um Dockerfile para cada projeto, back e front, e um arquivo docker-compose.yml disponibilizando a stack para que possamos subir em um dos nossos ambientes para testá-lo.
 
-os projetos devem ficar em suas respectivas pastas: front e back, seguindo o modelo monorepo.
+os projetos devem ficar em suas respectivas pastas: **frontend** e **back**, seguindo o modelo monorepo.
 
 ### O que vamos avaliar
 Avaliaremos com espero as seguintes caracteristicas do desenvolvimento: 
