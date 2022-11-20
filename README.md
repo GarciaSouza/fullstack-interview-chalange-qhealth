@@ -5,24 +5,23 @@ Esse desafio visa avaliar o pensamento lógico, resolução de problemas, conhec
 Ele deve ser entregue em até 7 dias corridos, contato a partir da entrevista.
 
 ## Como realizar o projeto?
-Deve ser feito uma fork desse projeto e deve ser criando uma branch com o nome do seu id no github. Após o desenvolvimento, deve se disponibilizar um Dockerfile para cada projeto, back e front, e um arquivo docker-compose.yml disponibilizando a stack para que possamos subir em um dos nossos ambientes para testá-lo.
+Deve ser feito uma fork desse projeto e deve ser criado uma branch com o nome do seu id no github. Após o desenvolvimento, deve se disponibilizar um Dockerfile para cada projeto, back e front, e um arquivo docker-compose.yml disponibilizando a stack para que possamos subir em um dos nossos ambientes para testá-lo.
 
 os projetos devem ficar em suas respectivas pastas: **frontend** e **back**, seguindo o modelo monorepo.
 
 ### O que vamos avaliar
-Avaliaremos com espero as seguintes caracteristicas do desenvolvimento: 
+Avaliaremos com espero as seguintes características do desenvolvimento:
  - Aderência a história do usuário
- - Qualidade de código: Good Smell, testes, scream arch, yagni, dry entre outras boas práticas
- - Aplicabilidade de conhecimentos em estrutura de dados: Árvore, Listas, Pilhas entre outros
+ - Qualidade de código: Good Smell, testes, scream arch, yagni, dry, entre outras boas práticas
+ - Aplicabilidade de conhecimentos em estrutura de dados: Árvore, Listas, Pilhas, Filas, entre outros
  - Aplicabilidade de conhecimentos relacionados a sorts, map, reduce. *Se realizado na mão, será considerado diferencial*
  - Utilização de padrões como MVVM, entre outros para desenvolvimento do front.
-
 
 ---
 
 # O Projeto
 
-O projeto trata-se de um microapp de agendamento a onde o paciente vai selecionar um profissional da clinica e realizar um agendamento de uma consulta. O app deve ser dividido em uma API fornecida por um backend e um frontend.
+O projeto trata-se de um microapp de agendamento onde o paciente vai selecionar um profissional da clínica e realizar o agendamento de uma consulta. O app deve ser dividido em uma API fornecida por um backend e um frontend.
 
 ### Stack
 você pode usar quaisquer dessas tecnologias para realizar os projetos:
@@ -52,7 +51,7 @@ você pode usar quaisquer dessas tecnologias para realizar os projetos:
 
 ```yml
 
-Consultorio:
+Consultório:
   Nome: QHealth
   Atendimento: Seg-Sab dás 08h00min ás 19h00min
   Especialidades: 
@@ -83,8 +82,8 @@ Profissional:
 # language: pt-BR
 
 Funcionalidade: Agendamento de consulta
-  Eu, como paciente do consultório QHealth, quero agendar uma consulta com o profissional da minha escolha, 
-  para evitar que eu ligue ou vá ao consultorio para esse agendamento. 
+  Eu, como paciente do consultório QHealth, quero agendar uma consulta com o profissional da minha escolha,
+  para evitar que eu ligue ou vá ao consultório para esse agendamento.
   Assim, fazendo com que evite filas ou fique muito tempo no telefone.
 
   Cenário: Agendamento realizado com sucesso
@@ -92,121 +91,114 @@ Funcionalidade: Agendamento de consulta
     E que eu escolha a especialidade do profissional
     E escolha o profissional
     E que eu tenha acesso a agenda do profissional
-    E que eu escolha uma data e horario para a consulta
+    E que eu escolha uma data e horário para a consulta
     E que essa data e horário esteja disponível
     E que esteja dentro do horário de atendimento do profissional
     Quando agendado a consulta
     Então inclua o meu agendamento na agenda do profissional
     E inclua o meu nome ao agendamento
-    E include meu número de Whatapp ao agendamento
+    E include meu número de WhatsApp ao agendamento
     E inclua o meu email ao agendamento
-
 
   Cenário: Falha ao agendar um horário não disponivel
     Dado que eu seja um paciente
     E que eu escolha a especialidade do profissional
     E escolha o profissional
     E que eu tenha acesso a agenda do profissional
-    E que eu escolha uma data e horario para a consulta
+    E que eu escolha uma data e horário para a consulta
     E que esteja dentro do horário de atendimento do profissional
     E que esta data esteja indisponível
     Quando agendado a consulta
     Então não inclua o meu agendamento na agenda do profissional
-    E informe-me que essa data está indisponível
+    E me informe que essa data está indisponível
 
   Cenário: Falha ao agendar um horário não disponivel
     Dado que eu seja um paciente
     E que eu escolha a especialidade do profissional
     E escolha o profissional
     E que eu tenha acesso a agenda do profissional
-    E que eu escolha uma data e horario para a consulta
+    E que eu escolha uma data e horário para a consulta
     E que esteja fora do horário de atendimento do profissional
     Quando agendado a consulta
     Então não inclua o meu agendamento na agenda do profissional
-    E informe que o profissional não atende nesse horário
+    E me informe que o profissional não atende nesse horário
 
 Funcionalidade: Cancelamento de consulta
-  Eu, como paciente do consultório QHealth, quero cancelar uma consulta com o profissional da minha escolha, 
-  para evitar que eu ligue ou vá ao consultorio para esse agendamento. 
+  Eu, como paciente do consultório QHealth, quero cancelar uma consulta com o profissional da minha escolha,
+  para evitar que eu ligue ou vá ao consultório para esse agendamento.
   Assim, fazendo com que evite filas ou fique muito tempo no telefone.
 
   Cenário: Cancelamento realizado com sucesso
     Dado que eu seja um paciente
     E que eu tenha uma consulta agendada
-    E que esteja no periodo de cancelamento aceito pelo médico
+    E que esteja no período de cancelamento aceito pelo médico
     Quando solicitado o cancelamento
     Então então remova a consulta da agenda do médico
     E remova os meus dados
-    E informe-me que o cancelamento foi realizado
+    E me informe que o cancelamento foi realizado
 
-
-Cenario: Falha ao cancelar devido ao prazo permitido expirado
+  Cenário: Falha ao cancelar devido ao prazo permitido expirado
     Cenário: Cancelamento realizado com sucesso
     Dado que eu seja um paciente
     E que eu tenha uma consulta agendada
-    E que esteja forma no periodo de cancelamento aceito pelo médico
+    E que esteja forma no período de cancelamento aceito pelo médico
     Quando solicitado o cancelamento
-    Entaõ não remova o agendamento
+    Então não remova o agendamento
     E inclua uma observação de solicitação de cancelamento recusado
-    E informe-me que não foi possivel cancelar a consulta devido ao limite permitido
-    E informe o limite
+    E me informe que não foi possivel cancelar a consulta devido ao limite permitido
+    E me informe o limite
 
 Funcionalidade: Reagendamento de consulta
-  Eu, como paciente do consultório QHealth, quero reagendar uma consulta com o profissional da minha escolha, 
-  para evitar que eu ligue ou vá ao consultorio para esse agendamento. 
+  Eu, como paciente do consultório QHealth, quero reagendar uma consulta com o profissional da minha escolha,
+  para evitar que eu ligue ou vá ao consultório para esse agendamento.
   Assim, fazendo com que evite filas ou fique muito tempo no telefone.
 
-  Cenario: Reagendamento realizado com sucesso
+  Cenário: Reagendamento realizado com sucesso
     Dado que eu seja um paciente
     E que eu tenha uma consulta agendada
-    E que esteja no periodo permitido de reagendamento aceito pelo médico
+    E que esteja no período permitido de reagendamento aceito pelo médico
     E que o horário que eu escolha esteja disponível
-    Qaundo solicitado o reagendamento
-    Então então remova a consulta anterior da agenda do médico
+    Quando solicitado o reagendamento
+    Então remova a consulta anterior da agenda do médico
     E remova os meus dados da consulta anterior
     E inclua o meu agendamento na agenda do profissional
     E inclua o meu nome ao agendamento
-    E includa meu número de Whatapp ao agendamento
+    E includa meu número de WhatsApp ao agendamento
     E inclua o meu email ao agendamento
     E inclua uma observação de consulta reagendada
-    E informe-me que o reagendamento foi realizado
-    
+    E me informe que o reagendamento foi realizado
 
-
-  Cenario: Falha ao reagendar um horário não disponivel
+  Cenário: Falha ao reagendar um horário não disponivel
     Dado que eu seja um paciente
     E que eu tenha uma consulta agendada
-    E que esteja no periodo permitido de reagendamento aceito pelo médico
+    E que esteja no período permitido de reagendamento aceito pelo médico
     E que o horário que eu escolhi não esteja disponivel
     Qaundo solicitado o reagendamento
     Então informe que o horário não está disponível e informe para selecionar outra data
     E não realize o agendamento
 
-  Cenario: Falha ao reagendar devido ao prazo permitido expirado
+  Cenário: Falha ao reagendar devido ao prazo permitido expirado
     Dado que eu seja um paciente
     E que eu tenha uma consulta agendada
-    E que esteja não periodo permitido de reagendamento aceito pelo médico
+    E que não esteja no período permitido de reagendamento aceito pelo médico
     E que o horário que eu escolha esteja disponível
     Quando solicitado o reagendamento
     Então informe que não há mais como reagendar devido ao limite para reagendamento
     E não realize o reagendamento
-    
-    
+
 Funcionalidade: Listagem de consultas agendadas
-  Eu, como profissional do consultório QHealth, quero ver todas as consultas que eu 
+  Eu, como profissional do consultório QHealth, quero ver todas as consultas que eu
   tenha agendada, para que eu me organize antes de cada consulta.
 
-  Cenario: Listagem realizada com sucesso
+  Cenário: Listagem realizada com sucesso
     Dado que eu seja profissional de saúde
     E que eu tenha consultas em minha agenda
     Quando solicitar para ver a minha agenda
     Então mostrar a agenda da semana com todas as consultas agendadas
 
-  Cenario: Sem agendas para serem listadas
+  Cenário: Sem agendas para serem listadas
     Dado que eu seja profissional de saúde
     E que eu não tenha consultas em minha agenda
     Quando solicitar para ver a minha agenda
     Então infome que eu não possuo agendamentos
 ```
-
-
