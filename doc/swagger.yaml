@@ -1,0 +1,292 @@
+openapi: 3.0.3
+info:
+  title: QHealth Agendamento
+  description: |-
+  termsOfService: http://www.qbem.net.br/terms/
+  contact:
+    email: garciasouza@qbem.net.br
+  version: 1.0.0
+servers:
+  - url: https://www.qbem.net.br/api/v1/calendar
+tags:
+  - name: appointments
+    description: Appointments
+paths:
+  /appointment:
+    get:
+      tags:
+        - appointments
+      summary: Listar Agendamentos
+      description: Listar Agendamentos
+      operationId: getAppointments
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Appointment'          
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Appointment'
+        '401':
+          description: not authorized
+        '500':
+          description: internal error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponse'          
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+    post:
+      tags:
+        - appointments
+      summary: Criar Agendamento
+      description: Criar Agendamento
+      operationId: createAppointment
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Appointment'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Appointment'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Appointment'
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Appointment'          
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Appointment'
+        '400':
+          description: invalid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponse'          
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+        '401':
+          description: not authorized
+        '500':
+          description: internal error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponse'          
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+  /appointment/{appointment_id}:
+    delete:
+      tags:
+        - appointments
+      summary: Cancelar Agendamento
+      description: Cancelar Agendamento
+      operationId: deleteAppointment
+      parameters:
+        - name: appointment_id
+          in: path
+          description: Appointment ID
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: successful operation
+        '400':
+          description: invalid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponse'          
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+        '401':
+          description: not authorized
+        '404':
+          description: appointment not found
+        '500':
+          description: internal error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponse'          
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+    put:
+      tags:
+        - appointments
+      summary: Atualizar Agendamento
+      description: Atualizar Agendamento
+      operationId: updateAppointment
+      parameters:
+        - name: appointment_id
+          in: path
+          description: Appointment ID
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: Update an existent pet in the store
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Appointment'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Appointment'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Appointment'
+        required: true
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Appointment'          
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Appointment'
+        '400':
+          description: invalid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponse'          
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+        '401':
+          description: not authorized
+        '404':
+          description: appointment not found
+        '500':
+          description: internal error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponse'          
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+components:
+  schemas:
+    Attendance:
+      type: object
+      properties:
+        sun_start:
+          type: string
+        sun_end:
+          type: string
+        mon_start:
+          type: string
+        mon_end:
+          type: string
+        tue_start:
+          type: string
+        tue_end:
+          type: string
+        wed_start:
+          type: string
+        wed_end:
+          type: string
+        thu_start:
+          type: string
+        thu_end:
+          type: string
+        fri_start:
+          type: string
+        fri_end:
+          type: string
+        sat_start:
+          type: string
+        sat_end:
+          type: string
+      xml:
+        name: attendance
+    Appointment:
+      type: object
+      properties:
+        appointment_id:
+          type: string
+        clinic_id:
+          type: string
+        professional_id:
+          type: string
+        patient_id:
+          type: string
+      xml:
+        name: appointment
+    Clinic:
+      type: object
+      properties:
+        clinic_id:
+          type: string
+        name:
+          type: string
+        attendance:
+          $ref: '#/components/schemas/Attendance'
+        specialties:
+          type: array
+          items:
+            type: string
+      xml:
+        name: clinic
+    Patient:
+      type: object
+      properties:
+        patient_id:
+          type: string
+        name:
+          type: string
+        phone:
+          type: string
+        email:
+          type: string
+      xml:
+        name: patient
+    Professional:
+      type: object
+      properties:
+        professional_id:
+          type: string
+        name:
+          type: string
+        specialty:
+          type: string
+        attendance_time:
+          type: string
+        cancel_limit_time:
+          type: string
+        attendance:
+          $ref: '#/components/schemas/Attendance'
+      xml:
+        name: professional
+    ApiResponse:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+      xml:
+        name: api_response
